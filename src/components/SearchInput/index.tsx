@@ -27,7 +27,6 @@ function SearchInput({ unit, setUnit, setQuery }: SearchInputTypes) {
 
   const getLocation = async () => {
     const data = await getIp();
-    console.log(data.geoplugin_request);
 
     const lat = data.geoplugin_latitude;
     const lon = data.geoplugin_longitude;
@@ -61,7 +60,7 @@ function SearchInput({ unit, setUnit, setQuery }: SearchInputTypes) {
   };
 
   return (
-    <div className="px-5 flex w-full items-center">
+    <div className="px-0 sm:px-5 flex w-full items-center  md:flex-row flex-col">
       <div className="flex w-full items-center justify-between">
         <input
           value={city}
@@ -94,7 +93,7 @@ function SearchInput({ unit, setUnit, setQuery }: SearchInputTypes) {
         </div>
       </div>
 
-      <div className="inline-flex items-center justify-center ml-5 text-white">
+      <div className="inline-flex items-center justify-center ml-5 text-white mt-5">
         <button
           name="metric"
           className="text-xl text-white font-light transition ease-out hover:scale-125"

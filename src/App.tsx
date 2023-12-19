@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import getFormattedWeatherData from "./services/weatherService.ts";
 import { HistoricalDataType, UnitType, WeatherType } from "./type/weather.ts";
 import toast from "react-hot-toast";
+import WeatherByDateRange from "./components/WeatherByDateRange/index.tsx";
 
 function App() {
   const [query, setQuery] = useState<Record<string, string | number>>({
@@ -36,7 +37,7 @@ function App() {
 
 
   return (
-    <div className="mx-auto max-w-screen-md my-4 py-10 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 from-cyan-700 to-blue-700">
+    <div className="mx-auto max-w-screen-md md:my-4 my-0 py-10 md:w-[600px] px-3 sm:px-5 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 from-cyan-700 to-blue-700">
       <SearchInput setUnit={setUnit} setQuery={setQuery} unit={unit} />
       {!weather && (
         <span className="mt-5 text-white flex justify-center">
@@ -66,19 +67,17 @@ function App() {
               <Forcast
                 title="Daily Forcast"
                 items={weather.daily}
-                type="daily"
-                location={{ lat: weather.lat, lon: weather.lon }}
-                timezone={weather.timezone}
-                setHistoricalData={setHistoricalData}
+           
               />
             </>
           )}
+          <WeatherByDateRange   setHistoricalData={setHistoricalData}   location={{ lat: weather.lat, lon: weather.lon }}
+                timezone={weather.timezone}/>
 
           {historicalData && historicalData?.length>0 && (
             <Forcast
               title="historical weather"
               items={historicalData}
-              type="histoty"
             />
           )}
         </>

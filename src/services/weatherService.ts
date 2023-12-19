@@ -5,8 +5,6 @@ const API_KEY = "1fa9ff4126d95b8db54f3897a208e91c";
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 const NUMBER_OF_FORCAST = 7;
 
-//history.openweathermap.org/data/2.5/history/city?lat={lat}&lon={lon}&type=hour&start={start}&end={end}&appid={API key}
-
 const getWeatherData = async (
   infoType: unknown,
   searchParams: Record<string, unknown>,
