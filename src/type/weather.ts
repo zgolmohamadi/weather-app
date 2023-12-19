@@ -41,3 +41,32 @@ export type current_weather = {
   name: string;
   cod: number;
 };
+
+export type ForcastType={
+  title:string,
+  temp: number,
+  icon: string,
+}
+
+export type WeatherType={
+  timezone: string,
+  daily: ForcastType[],
+  hourly: ForcastType[],
+  lat: number,
+  lon: number;
+  temp: number;
+  feels_like: string;
+  temp_min: number;
+  temp_max: number;
+  humidity: number;
+  name: string;
+  dt: string;
+  country: string;
+  sunrise: string;
+  sunset: string;
+  details: string;
+  icon: string;
+  speed: number;
+}
+
+export type UnitType='metric' | 'imperial' | 'standard'
