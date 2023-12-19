@@ -42,17 +42,17 @@ export type current_weather = {
   cod: number;
 };
 
-export type ForcastType={
-  title:string,
-  temp: number,
-  icon: string,
-}
+export type ForcastItemType = {
+  title: string;
+  temp: number;
+  icon: string;
+};
 
-export type WeatherType={
-  timezone: string,
-  daily: ForcastType[],
-  hourly: ForcastType[],
-  lat: number,
+export type WeatherType = {
+  timezone: string;
+  daily: ForcastItemType[];
+  hourly: ForcastItemType[];
+  lat: number;
   lon: number;
   temp: number;
   feels_like: string;
@@ -67,6 +67,52 @@ export type WeatherType={
   details: string;
   icon: string;
   speed: number;
-}
+};
 
-export type UnitType='metric' | 'imperial' | 'standard'
+type Main = {
+  temp: number;
+  feels_like: number;
+  pressure: number;
+  humidity: number;
+  temp_min: number;
+  temp_max: number;
+};
+
+type Wind = {
+  speed: number;
+  deg: number;
+};
+
+type weather = {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+};
+
+export type HistoricalData = {
+  message: string;
+  cod: string;
+  city_id: number;
+  calctime: number;
+  cnt: number;
+  list: [
+    {
+      dt: string;
+      main: Main;
+      wind: Wind;
+      clouds: {
+        all: number;
+      };
+      weather: weather[];
+      rain: {
+        "1h": string;
+      };
+    }
+  ];
+};
+
+export type UnitType = "metric" | "imperial" | "standard";
+
+
+export type HistoricalDataType = { title: string; temp: number; icon: string };

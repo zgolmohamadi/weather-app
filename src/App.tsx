@@ -4,7 +4,7 @@ import TempretureAndDetails from "./components/TempretureAndDetails.tsx";
 import Forcast from "./components/Forcast/index.tsx";
 import { useEffect, useState } from "react";
 import getFormattedWeatherData from "./services/weatherService.ts";
-import { UnitType, WeatherType } from "./type/weather.ts";
+import { HistoricalDataType, UnitType, WeatherType } from "./type/weather.ts";
 import toast from "react-hot-toast";
 
 function App() {
@@ -14,6 +14,8 @@ function App() {
   const [unit, setUnit] = useState<UnitType>("metric");
   const [weather, setWeather] = useState<WeatherType | null>(null);
   const [dailyIsVisible, setDailyIsVisible] = useState<boolean>(false);
+
+  const [historicalData, setHistoricalData] = useState<HistoricalDataType[]>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,9 +36,7 @@ function App() {
 
 
   return (
-    <div
-      className="mx-auto max-w-screen-md my-4 py-10 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 from-cyan-700 to-blue-700"
-    >
+    <div className="mx-auto max-w-screen-md my-4 py-10 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 from-cyan-700 to-blue-700">
       <SearchInput setUnit={setUnit} setQuery={setQuery} unit={unit} />
       {!weather && (
         <span className="mt-5 text-white flex justify-center">
@@ -55,15 +55,31 @@ function App() {
           <Forcast title="Hourly Forcast" items={weather.hourly} />
           <button
             onClick={() => setDailyIsVisible(!dailyIsVisible)}
-            className={`text-white border border-solid border-white p-2 mt-4 transition ease-out ${dailyIsVisible ?'bg-white text-cyan-700':''}`}
+            className={`text-white border border-solid border-white p-2 mt-4 transition ease-out ${
+              dailyIsVisible ? "bg-white text-cyan-700" : ""
+            }`}
           >
             Show Daily Forcast
           </button>
           {dailyIsVisible && (
             <>
-             
-              <Forcast title="Daily Forcast" items={weather.daily}  />
+              <Forcast
+                title="Daily Forcast"
+                items={weather.daily}
+                type="daily"
+                location={{ lat: weather.lat, lon: weather.lon }}
+                timezone={weather.timezone}
+                setHistoricalData={setHistoricalData}
+              />
             </>
+          )}
+
+          {historicalData && historicalData?.length>0 && (
+            <Forcast
+              title="historical weather"
+              items={historicalData}
+              type="histoty"
+            />
           )}
         </>
       )}
