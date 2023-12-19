@@ -15,7 +15,7 @@ function SearchInput({ unit, setUnit, setQuery }: SearchInputTypes) {
   const [city, setCity] = useState("");
 
   const handleUnitChanges = (e) => {
-    const selectedUnit = e.currentTarget.name;
+    const selectedUnit = e.target.name;
     if (unit !== selectedUnit) setUnit(selectedUnit);
   };
 
@@ -93,7 +93,7 @@ function SearchInput({ unit, setUnit, setQuery }: SearchInputTypes) {
         </div>
       </div>
 
-      <div className="inline-flex items-center justify-center ml-5 text-white mt-5">
+      <div className="inline-flex items-center justify-center ml-5 text-white sm:mt-0 mt-5">
         <button
           name="metric"
           className="text-xl text-white font-light transition ease-out hover:scale-125"

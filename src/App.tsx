@@ -35,7 +35,6 @@ function App() {
     fetchData();
   }, [query, unit]);
 
-
   return (
     <div className="mx-auto max-w-screen-md md:my-4 my-0 py-10 md:w-[600px] px-3 sm:px-5 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 from-cyan-700 to-blue-700">
       <SearchInput setUnit={setUnit} setQuery={setQuery} unit={unit} />
@@ -57,28 +56,24 @@ function App() {
           <button
             onClick={() => setDailyIsVisible(!dailyIsVisible)}
             className={`text-white border border-solid border-white p-2 mt-4 transition ease-out ${
-              dailyIsVisible ? "bg-white text-cyan-700" : ""
+              dailyIsVisible ? "bg-white !text-cyan-700" : ""
             }`}
           >
             Show Daily Forcast
           </button>
           {dailyIsVisible && (
             <>
-              <Forcast
-                title="Daily Forcast"
-                items={weather.daily}
-           
-              />
+              <Forcast title="Daily Forcast" items={weather.daily} />
             </>
           )}
-          <WeatherByDateRange   setHistoricalData={setHistoricalData}   location={{ lat: weather.lat, lon: weather.lon }}
-                timezone={weather.timezone}/>
+          <WeatherByDateRange
+            setHistoricalData={setHistoricalData}
+            location={{ lat: weather.lat, lon: weather.lon }}
+            timezone={weather.timezone}
+          />
 
-          {historicalData && historicalData?.length>0 && (
-            <Forcast
-              title="historical weather"
-              items={historicalData}
-            />
+          {historicalData && historicalData?.length > 0 && (
+            <Forcast title="historical weather" items={historicalData} />
           )}
         </>
       )}

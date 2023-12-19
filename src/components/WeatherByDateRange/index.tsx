@@ -53,18 +53,21 @@ export default function WeatherByDateRange({
      <div className="mt-2 md:mt-0">
      <input
         type="date"
+        placeholder="mm/dd/yyyy"
         className="focus:outline-none mr-2 text-black p-1 placeholder:text-gray-300"
         onChange={(e) => setStart(new Date(e.target.value))}
       />
       <input
         type="date"
-        className="focus:outline-none mr-2  text-black p-1 mt-1 sm:mt-0"
+        placeholder="mm/dd/yyyy"
+        className="focus:outline-none mr-2  text-black p-1 mt-1 sm:mt-0 placeholder:text-gray-300"
         onChange={(e) => setEnd(new Date(e.target.value))}
       />
      </div>
       <button
         onClick={onHistoricalClickHandle}
-        className=" text-white border-white border-solid border py-1 px-2 mt-2 md:mt-0"
+        disabled={!start || !end}
+        className=" text-white border-white border-solid border py-1 px-2 mt-2 md:mt-0 disabled:opacity-60"
       >
         Forcast
       </button>
